@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F6F6F4;
+  color: #0A0A0C;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Красивый цвет при выделении текста мышкой */
+::selection {
+  background-color: #FF5A20;
+  color: white;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  /* Делает переносы строк в заголовках эстетичными (без висячих слов) */
+  text-wrap: balance;
+}
+
+p {
+  line-height: 1.6;
+  /* Улучшает читаемость абзацев, предотвращая одинокие слова в конце строки */
+  text-wrap: pretty;
+}
