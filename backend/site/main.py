@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import requests
 
 app = FastAPI()
 
-# Разрешаем абсолютно любые запросы, методы и заголовки для тестов
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,22 +13,31 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+TELEGRAM_TOKEN = "9200876225:AAEbDiMao945uuBXEjieCQ75CO70bW24c84"
+TELEGRAM_CHAT_ID = "-1005540406434"
+
 class Application(BaseModel):
     name: str | None = None
     phone: str
     message: str | None = None
 
-# Тестовый эндпоинт, чтобы проверить работу в браузере
 @app.get("/")
 async def root():
     return {"status": "working", "message": "FastAPI сервер готов к работе!"}
 
 @app.post("/api/applications")
 async def create_application(data: Application):
-    print("\n" + "="*40)
-    print("🔥 ПОЛУЧЕНА НОВАЯ ЗАЯВКА!")
-    print(f"👤 Имя: {data.name}")
-    print(f"📞 Телефон: {data.phone}")
-    print(f"💬 Сообщение: {data.message}")
-    print("="*40 + "\n")
-    return {"status": "success", "message": "Заявка успешно получена тестовым сервером!"}
+    text = (
+        f"🔥 ПОЛУЧЕНА НОВАЯ ЗАЯВКА!\n\n"
+        f"👤 Имя: {data.name if data.name else 'Не указано'}\n"
+        f"📞 Телефон: {data.phone}\n"
+        f"💬 Сообщение: {data.message if data.message else 'Без комментария'}"
+    )
+    
+    try:
+        url = f"https://telegram.org{TELEGRAM_TOKEN}/sendMessage"
+        requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID, "text": text}, timeout=5)
+    except Exception as e:
+        print(f"Ошибка отправки в Telegram: {e}")
+
+    return {"status": "success", "message": "Заявка получена и отправлена в Telegram!"}
