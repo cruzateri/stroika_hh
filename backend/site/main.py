@@ -14,7 +14,7 @@ app.add_middleware(
 )
 
 TELEGRAM_TOKEN = "9200876225:AAEbDiMao945uuBXEjieCQ75CO70bW24c84"
-TELEGRAM_CHAT_ID = "-1005540406434"
+TELEGRAM_CHAT_ID = "-5540406434"
 
 class Application(BaseModel):
     name: str | None = None
