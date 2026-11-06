@@ -9,7 +9,7 @@ export default function FinalCTASection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/applications', {
+      const response = await fetch('https://stroika-backend.onrender.com/api/applications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, phone, message: "Заявка из нижней секции сайта" })
