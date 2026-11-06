@@ -13,7 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-TELEGRAM_TOKEN = "9200876225:AAEbiDMac945uu8XEjeCQ75C070bW24c84"
+TELEGRAM_TOKEN = "9200876225:AAEbDiMao945uuBXEjieCQ75CO70bW24c84"
 TELEGRAM_CHAT_ID = "-1005540406434"
 
 class Application(BaseModel):
