@@ -35,7 +35,7 @@ async def create_application(data: Application):
     )
     
     try:
-        url = f"https://telegram.org{TELEGRAM_TOKEN}/sendMessage"
+        url = f"https://telegram.org/{TELEGRAM_TOKEN}/sendMessage"
         response = requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID, "text": text}, timeout=5)
         print(f"Ответ от Telegram: {response.text}")
     except Exception as e:
